@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Representación de Grafos</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html">← Volver</a>
+
+    <div class="toolbar" role="toolbar" aria-label="Cinta de herramientas">
+      <div class="toolbar-left">
+        <button class="tool-button" onclick="location.href='post1-intro-grafos.html'"> <span class="tool-icon">📝</span> Posts</button>
+        <button class="tool-button" onclick="location.href='post2-representacion-grafos.html'"> <span class="tool-icon">📊</span> Representación</button>
+        <button class="tool-button" onclick="location.href='post3-recorridos.html'"> <span class="tool-icon">⚙️</span> Algoritmos</button>
+      </div>
+      <div class="toolbar-right">
+        <button class="tool-button ghost" onclick="navigator.clipboard?.writeText(location.href).then(()=>alert('URL copiada'))"> <span class="tool-icon">🔗</span> Compartir</button>
+        <button class="tool-button positive" onclick="alert('Ver código (placeholder)')"> <span class="tool-icon">💻</span> Código</button>
+      </div>
+    </div>
+
+    <h1>Post #2 — Representación de Grafos</h1>
+
+    <p>Las dos representaciones más comunes en memoria son la <strong>Lista de Adyacencia</strong> y la <strong>Matriz de Adyacencia</strong>. Cada una tiene ventajas según la densidad del grafo y las operaciones que necesites optimizar.</p>
+
+    <h2>Grafo de ejemplo (misma topología que en el Post #1)</h2>
+    <svg viewBox="0 0 300 220" width="100%" height="240" xmlns="http://www.w3.org/2000/svg">
+      <line x1="60" y1="50" x2="160" y2="50" stroke="#333" stroke-width="2" />
+      <line x1="60" y1="50" x2="100" y2="140" stroke="#333" stroke-width="2" />
+      <line x1="160" y1="50" x2="220" y2="120" stroke="#333" stroke-width="2" />
+      <line x1="100" y1="140" x2="220" y2="120" stroke="#333" stroke-width="2" />
+      <line x1="160" y1="50" x2="100" y2="140" stroke="#333" stroke-width="2" />
+      <line x1="40" y1="170" x2="100" y2="140" stroke="#333" stroke-width="2" />
+      <circle cx="60" cy="50" r="18" fill="#fff" stroke="#2b6cb0" stroke-width="3" />
+      <text x="60" y="55" text-anchor="middle" font-size="12" fill="#2b6cb0">A</text>
+      <circle cx="160" cy="50" r="18" fill="#fff" stroke="#2b6cb0" stroke-width="3" />
+      <text x="160" y="55" text-anchor="middle" font-size="12" fill="#2b6cb0">B</text>
+      <circle cx="100" cy="140" r="18" fill="#fff" stroke="#2b6cb0" stroke-width="3" />
+      <text x="100" y="145" text-anchor="middle" font-size="12" fill="#2b6cb0">C</text>
+      <circle cx="220" cy="120" r="18" fill="#fff" stroke="#2b6cb0" stroke-width="3" />
+      <text x="220" y="125" text-anchor="middle" font-size="12" fill="#2b6cb0">D</text>
+      <circle cx="40" cy="170" r="18" fill="#fff" stroke="#2b6cb0" stroke-width="3" />
+      <text x="40" y="175" text-anchor="middle" font-size="12" fill="#2b6cb0">E</text>
+    </svg>
+
+    <h2>1) Lista de Adyacencia</h2>
+    <p>La lista de adyacencia almacena, para cada vértice, una colección (lista) de sus vecinos. Es eficiente en espacio para grafos dispersos.</p>
+    <pre><code>// Representación (pseudo-JSON)
+{
+  "A": ["B","C"],
+  "B": ["A","C","D"],
+  "C": ["A","B","D","E"],
+  "D": ["B","C"],
+  "E": ["C"]
+}
+    </code></pre>
+
+    <h2>2) Matriz de Adyacencia</h2>
+    <p>Una matriz NxN donde la celda (i,j) indica si existe arista entre i y j. Permite consultar en O(1) si existe la arista, pero usa O(N^2) espacio.</p>
+
+    <table style="width:100%;border-collapse:collapse;margin-top:12px">
+      <thead>
+        <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>A</th><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><th>B</th><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+        <tr><th>C</th><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+        <tr><th>D</th><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><th>E</th><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Resumen:</strong> Use lista de adyacencia para grafos grandes y dispersos; use matriz cuando N es pequeño o se necesitan consultas rápidas de existencia de arista.</p>
+  </div>
+</body>
+</html>
