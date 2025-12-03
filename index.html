@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog: Estructura de Datos - Grafos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Grafos: Blog Técnico</h1>
+      <p class="tagline">Conceptos, representaciones y algoritmos básicos</p>
+      <nav>
+        <a href="posts/post1-intro-grafos.html">Introducción</a>
+        <a href="posts/post2-representacion-grafos.html">Representación</a>
+        <a href="posts/post3-recorridos.html">Recorridos (BFS / DFS)</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Cinta de herramientas / Toolbar -->
+  <div class="container">
+    <div class="toolbar" role="toolbar" aria-label="Cinta de herramientas">
+      <div class="toolbar-left">
+        <button class="tool-button" onclick="location.href='posts/post1-intro-grafos.html'"> <span class="tool-icon">📝</span> Posts</button>
+        <button class="tool-button" onclick="location.href='posts/post2-representacion-grafos.html'"> <span class="tool-icon">📊</span> Representación</button>
+        <button class="tool-button" onclick="location.href='posts/post3-recorridos.html'"> <span class="tool-icon">⚙️</span> Algoritmos</button>
+      </div>
+      <div class="toolbar-right">
+        <button class="tool-button ghost" onclick="navigator.clipboard?.writeText(location.href).then(()=>alert('URL copiada'))"> <span class="tool-icon">🔗</span> Compartir</button>
+        <button class="tool-button positive" onclick="alert('Nuevo post (placeholder)')"> <span class="tool-icon">➕</span> Nuevo</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Bienvenido</h2>
+      <p>Este blog proporciona una introducción práctica y visual a los grafos y sus algoritmos fundamentales.</p>
+      <ul class="posts-list">
+        <li><a href="posts/post1-intro-grafos.html">Post #1 — Introducción a los Grafos</a></li>
+        <li><a href="posts/post2-representacion-grafos.html">Post #2 — Representación de Grafos</a></li>
+        <li><a href="posts/post3-recorridos.html">Post #3 — Algoritmos de Recorrido: BFS y DFS</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>¿Cómo ver este sitio localmente?</h3>
+      <ol>
+        <li>Abrir <code>index.html</code> en tu navegador (doble clic), o</li>
+        <li>Servir con un servidor local: <code>python -m http.server 8000</code> desde la carpeta del repositorio.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">&copy; 2025 — Blog Grafos</div>
+  </footer>
+
+  <script>
+    // Pequeña mejora: destacar el enlace activo
+    (function(){
+      const links = document.querySelectorAll('nav a');
+      links.forEach(a=>{
+        try{
+          const href = a.getAttribute('href');
+          if(location.pathname.endsWith(href)){
+            a.classList.add('active');
+          }
+        }catch(e){}
+      });
+    })();
+  </script>
+</body>
+</html>
